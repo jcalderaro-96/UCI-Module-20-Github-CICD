@@ -1,15 +1,14 @@
-# updated .github/workflows/render-deploy.yml with inline comments
-name: Deploy to Render on main merge
+name: Deploy to Render  # Name of this workflow
 
 on:
   push:
     branches:
-      - main  # trigger on push to main branch
+      - main  # Trigger deploy only when code is pushed to main branch
 
 jobs:
-  deploy-to-render:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest  # Use latest Ubuntu runner
 
     steps:
-      - name: Trigger Render Deploy Hook
-        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}  # call Render deploy hook
+      - name: Trigger Render Deploy Hook  # Step to call Render deploy hook URL
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}  # Send POST request to Render webhook URL stored securely as repo secret
