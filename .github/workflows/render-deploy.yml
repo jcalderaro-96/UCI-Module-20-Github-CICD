@@ -1,0 +1,15 @@
+# updated .github/workflows/render-deploy.yml with inline comments
+name: Deploy to Render on main merge
+
+on:
+  push:
+    branches:
+      - main  # trigger on push to main branch
+
+jobs:
+  deploy-to-render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Render Deploy Hook
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}  # call Render deploy hook
